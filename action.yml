@@ -1,0 +1,14 @@
+name: "EKS Helm"
+description: "Authenticates against EKS clusters using the AWS CLI and executes Helm commands. Can also be used with kubectl and SOPs commands."
+inputs:
+  command:
+    description: "Your command (kubectl, helm, aws or sops)"
+    required: true
+outputs:
+  result:
+    description: "Output returned by your command"
+runs:
+  using: "docker"
+  image: "Dockerfile"
+  args:
+    - ${{ inputs.command }}
