@@ -4,6 +4,12 @@ inputs:
   command:
     description: "Your command (kubectl, helm, aws or sops)"
     required: true
+  plugins:
+    description: "The plugins that should be installed for helm"
+    required: false
+  repos:
+    description: "The repositories that should be added"
+    required: false
 outputs:
   result:
     description: "Output returned by your command"
