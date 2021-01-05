@@ -9,6 +9,6 @@ outputs:
     description: "Output returned by your command"
 runs:
   using: "docker"
-  image: "ghcr.io/birdiecare/helm-eks-image:latest"
+  image: "Dockerfile"
   args:
     - ${{ inputs.command }}
