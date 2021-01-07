@@ -16,9 +16,9 @@ Use this as a Github Action step as follows:
 name: deploy
 
 on:
-    push:
-        branches:
-            - staging
+  push:
+    branches:
+      - staging
 
 jobs:
   deploy:
@@ -42,8 +42,12 @@ jobs:
         env:
           KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
         with:
+          repos: |
+            stable https://charts.helm.sh/stable
+          plugins: |
+            https://github.com/jkroepke/helm-secrets@v3.4.0
           command: |
-          sops helm upgrade <release name> --install --wait <chart> -f <path to values.yaml>
+            helm secrets upgrade <release name> --install --wait <chart> -f <path to values.yaml>
 ```
 
 # Secrets
@@ -51,8 +55,17 @@ jobs:
 Create a GitHub Secret for each of the following values:
 
 - `KUBE_CONFIG_DATA`  
-  Your kube config file in base64-encrypted form. You can do that with  
+  Your kube config file in base64-encoded form. You can do that with  
   `cat $HOME/.kube/config | base64`
 
 - `AWS_ACCESS_KEY_ID`
 - `AWS_SECRET_ACCESS_KEY`
+
+# Inputs
+
+| Input   | Description                | Example                                           |
+|---------|----------------------------|---------------------------------------------------|
+| command | The command to be executed | `sh ./scripts/deploy.sh`                          |
+| repos   | The repos to add           | `stable https://charts.helm.sh/stable`            |
+| plugins | The plugins to install     | `https://github.com/jkroepke/helm-secrets@v3.4.0` |
+
