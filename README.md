@@ -38,7 +38,7 @@ jobs:
         uses: aws-actions/amazon-ecr-login@v1
         
       - name: helm deploy
-        uses: birdiecare/helm-eks-action@v1
+        uses: birdiecare/helm-eks-action@v2
         env:
           KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
         with:
