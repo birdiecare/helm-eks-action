@@ -1,1 +1,1 @@
-FROM ghcr.io/birdiecare/helm-eks-image:0.1.0
+FROM ghcr.io/birdiecare/helm-eks-image:1.0.0
